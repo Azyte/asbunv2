@@ -1,21 +1,21 @@
 import { cn } from "@/lib/utils"
 
 const statusColors: Record<string, string> = {
-  pending: "bg-yellow-100 text-yellow-800",
-  accepted: "bg-blue-100 text-blue-800",
-  buying: "bg-purple-100 text-purple-800",
-  delivering: "bg-orange-100 text-orange-800",
-  completed: "bg-green-100 text-green-800",
-  cancelled: "bg-red-100 text-red-800",
-  available: "bg-green-100 text-green-800",
-  borrowed: "bg-red-100 text-red-800",
-  sold: "bg-gray-100 text-gray-800",
-  approved: "bg-green-100 text-green-800",
-  rejected: "bg-red-100 text-red-800",
+  pending: "bg-yellow-900/40 border border-yellow-700/50 text-yellow-300",
+  accepted: "bg-blue-900/40 border border-blue-700/50 text-blue-300",
+  buying: "bg-purple-900/40 border border-purple-700/50 text-purple-300",
+  delivering: "bg-orange-900/40 border border-orange-700/50 text-orange-300",
+  completed: "bg-emerald-900/40 border border-emerald-700/50 text-emerald-300",
+  cancelled: "bg-red-900/40 border border-red-700/50 text-red-300",
+  available: "bg-emerald-900/40 border border-emerald-700/50 text-emerald-300",
+  borrowed: "bg-red-900/40 border border-red-700/50 text-red-300",
+  sold: "bg-slate-700/30 border border-slate-600/50 text-slate-300",
+  approved: "bg-emerald-900/40 border border-emerald-700/50 text-emerald-300",
+  rejected: "bg-red-900/40 border border-red-700/50 text-red-300",
 }
 
 const statusLabels: Record<string, string> = {
-  pending: "Menunggu Jastiper",
+  pending: "Menunggu",
   accepted: "Diterima",
   buying: "Sedang Dibeli",
   delivering: "Dalam Perjalanan",
@@ -30,7 +30,7 @@ const statusLabels: Record<string, string> = {
 
 export function Badge({ status, className }: { status: string; className?: string }) {
   return (
-    <span className={cn("inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium", statusColors[status] || "bg-gray-100 text-gray-800", className)}>
+    <span className={cn("inline-flex items-center rounded-lg px-2 py-0.5 text-[10px] font-bold border", statusColors[status] || "bg-slate-800 text-slate-400 border-slate-700", className)}>
       {statusLabels[status] || status}
     </span>
   )
