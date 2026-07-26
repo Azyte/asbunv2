@@ -7,10 +7,19 @@
   --foreground: #0f172a;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
   -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+}
+
+* {
+  min-width: 0;
 }
 
 .pb-safe {

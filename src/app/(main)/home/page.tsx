@@ -52,7 +52,7 @@ export default function HomePage() {
         <span className="text-xs font-medium text-emerald-600">6 fitur</span>
       </div>
 
-      <div className="grid grid-cols-3 gap-3 mb-6">
+      <div className="grid grid-cols-3 gap-3 mb-6 sm:grid-cols-3 lg:grid-cols-6">
         {SHORTCUTS.map(({ href, icon: Icon, label, color }) => (
           <Link key={href} href={href}>
             <Card className="hover:-translate-y-1 hover:shadow-xl">

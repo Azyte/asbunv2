@@ -47,8 +47,8 @@ export default function FoodPage() {
         ))}
       </div>
 
-      <div className="space-y-4">
-        {merchants.length === 0 && <p className="text-sm text-slate-400 text-center py-10">Belum ada merchant. Jalankan seed data dulu.</p>}
+      <div className="space-y-4 lg:grid lg:grid-cols-2 lg:gap-5 lg:space-y-0 xl:grid-cols-3">
+        {merchants.length === 0 && <p className="text-sm text-slate-400 text-center py-10 lg:col-span-3">Belum ada merchant. Jalankan seed data dulu.</p>}
         {merchants.map(m => (
           <Link key={m._id} href={`/food/${m._id}`}>
             <Card className="overflow-hidden hover:-translate-y-1 hover:shadow-xl mb-4">
