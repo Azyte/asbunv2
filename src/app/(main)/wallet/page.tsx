@@ -53,44 +53,58 @@ export default function WalletPage() {
 
   return (
     <div className="px-5 pt-5 pb-28">
-      <Link href="/profile" className="inline-flex items-center gap-1 text-sm text-slate-500 mb-4"><ArrowLeft size={16} /> Kembali</Link>
+      <Link href="/profile" className="inline-flex items-center gap-1 text-sm text-slate-400 mb-4 hover:text-slate-300 transition-colors"><ArrowLeft size={16} /> Kembali</Link>
       <div className="grid gap-5 lg:grid-cols-[380px_1fr]">
         <div>
-          <Card className="mb-5 overflow-hidden border-0 bg-gradient-to-br from-slate-900 via-emerald-900 to-teal-800 text-white shadow-2xl shadow-emerald-900/20">
-            <CardContent className="p-6">
-              <div className="mb-6 flex items-center gap-2"><Wallet size={22} /><span className="text-sm font-bold text-emerald-100">Saldo Dompet</span></div>
+          <Card className="mb-5 overflow-hidden">
+            <CardContent className="p-6 bg-gradient-to-br from-slate-800 via-emerald-900 to-teal-900 text-white">
+              <div className="mb-6 flex items-center gap-2"><Wallet size={22} /><span className="text-sm font-bold text-emerald-300">Saldo Dompet</span></div>
               <p className="text-4xl font-black tracking-tight">{formatRupiah(profile.balance)}</p>
-              <p className="mt-2 text-xs text-emerald-100">Saldo masuk setelah topup diapprove admin.</p>
+              <p className="mt-2 text-xs text-emerald-200/70">Saldo masuk setelah topup diapprove admin.</p>
             </CardContent>
           </Card>
 
-          <div className="grid grid-cols-2 gap-2 rounded-3xl bg-white p-2 shadow-sm mb-5">
-            <button onClick={() => setTab("topup")} className={`rounded-2xl px-4 py-3 text-sm font-black ${tab === "topup" ? "bg-emerald-500 text-white" : "text-slate-500"}`}><ArrowDownToLine size={16} className="inline mr-1" /> Topup</button>
-            <button onClick={() => setTab("withdraw")} className={`rounded-2xl px-4 py-3 text-sm font-black ${tab === "withdraw" ? "bg-slate-900 text-white" : "text-slate-500"}`}><ArrowUpFromLine size={16} className="inline mr-1" /> Withdraw</button>
+          <div className="grid grid-cols-2 gap-2 rounded-2xl bg-slate-800/60 p-1.5 mb-5 border border-slate-700">
+            <button onClick={() => setTab("topup")} className={`rounded-xl px-4 py-3 text-xs font-black transition-all flex items-center justify-center gap-2 ${tab === "topup" ? "bg-gradient-to-br from-emerald-600 to-cyan-600 text-white shadow-lg shadow-emerald-900/50" : "text-slate-400 hover:text-slate-200 hover:bg-slate-700/50"}`}><ArrowDownToLine size={14} /> Topup</button>
+            <button onClick={() => setTab("withdraw")} className={`rounded-xl px-4 py-3 text-xs font-black transition-all flex items-center justify-center gap-2 ${tab === "withdraw" ? "bg-gradient-to-br from-slate-700 to-slate-900 text-white shadow-lg" : "text-slate-400 hover:text-slate-200 hover:bg-slate-700/50"}`}><ArrowUpFromLine size={14} /> Withdraw</button>
           </div>
 
           {tab === "topup" ? (
-            <Card><CardContent className="p-4">
-              <h2 className="font-black mb-3">Topup Saldo</h2>
+            <Card><CardContent className="p-4 space-y-4">
+              <h2 className="font-black text-lg text-slate-200">Topup Saldo</h2>
               <form onSubmit={submitTopup} className="space-y-3">
-                <Input type="number" placeholder="Nominal minimal 10000" value={tp.amount} onChange={e => setTp({...tp, amount: e.target.value})} required />
-                <select className="h-12 w-full rounded-2xl border border-white/70 bg-white px-4 text-sm shadow-sm" value={tp.method} onChange={e => setTp({...tp, method: e.target.value})}>
-                  <option>QRIS</option><option>Transfer BCA</option><option>Transfer Mandiri</option><option>DANA</option><option>Gopay</option><option>OVO</option>
-                </select>
-                <Input placeholder="Catatan / link bukti transfer" value={tp.proof} onChange={e => setTp({...tp, proof: e.target.value})} />
+                <div>
+                  <Input type="number" placeholder="Nominal minimal 10000" value={tp.amount} onChange={e => setTp({...tp, amount: e.target.value})} required />
+                </div>
+                <div>
+                  <select className="h-11 w-full rounded-xl bg-slate-800 border border-slate-600 text-slate-200 px-4 outline-none focus:border-emerald-500 transition-all cursor-pointer" value={tp.method} onChange={e => setTp({...tp, method: e.target.value})}>
+                    <option>QRIS</option><option>Transfer BCA</option><option>Transfer Mandiri</option><option>DANA</option><option>Gopay</option><option>OVO</option>
+                  </select>
+                </div>
+                <div>
+                  <Input placeholder="Catatan / link bukti transfer" value={tp.proof} onChange={e => setTp({...tp, proof: e.target.value})} />
+                </div>
                 <Button type="submit" className="w-full" disabled={loading}>Kirim Request Topup</Button>
               </form>
             </CardContent></Card>
           ) : (
-            <Card><CardContent className="p-4">
-              <h2 className="font-black mb-3">Tarik Saldo</h2>
+            <Card><CardContent className="p-4 space-y-4">
+              <h2 className="font-black text-lg text-slate-200">Tarik Saldo</h2>
               <form onSubmit={submitWithdraw} className="space-y-3">
-                <Input type="number" placeholder="Nominal (Rp)" value={wd.amount} onChange={e => setWd({...wd, amount: e.target.value})} required />
-                <select className="h-12 w-full rounded-2xl border border-white/70 bg-white px-4 text-sm shadow-sm" value={wd.method} onChange={e => setWd({...wd, method: e.target.value})}>
-                  <option>Gopay</option><option>OVO</option><option>DANA</option><option>BCA</option><option>Mandiri</option>
-                </select>
-                <Input placeholder="Nomor Rekening / HP" value={wd.accountNumber} onChange={e => setWd({...wd, accountNumber: e.target.value})} required />
-                <Input placeholder="Atas Nama" value={wd.accountName} onChange={e => setWd({...wd, accountName: e.target.value})} required />
+                <div>
+                  <Input type="number" placeholder="Nominal (Rp)" value={wd.amount} onChange={e => setWd({...wd, amount: e.target.value})} required />
+                </div>
+                <div>
+                  <select className="h-11 w-full rounded-xl bg-slate-800 border border-slate-600 text-slate-200 px-4 outline-none focus:border-emerald-500 transition-all cursor-pointer" value={wd.method} onChange={e => setWd({...wd, method: e.target.value})}>
+                    <option>Gopay</option><option>OVO</option><option>DANA</option><option>BCA</option><option>Mandiri</option>
+                  </select>
+                </div>
+                <div>
+                  <Input placeholder="Nomor Rekening / HP" value={wd.accountNumber} onChange={e => setWd({...wd, accountNumber: e.target.value})} required />
+                </div>
+                <div>
+                  <Input placeholder="Atas Nama" value={wd.accountName} onChange={e => setWd({...wd, accountName: e.target.value})} required />
+                </div>
                 <Button type="submit" className="w-full" disabled={loading || !wd.amount}>Tarik Dana</Button>
               </form>
             </CardContent></Card>
@@ -98,8 +112,8 @@ export default function WalletPage() {
         </div>
 
         <div className="grid gap-5 lg:grid-cols-2">
-          <History title="Riwayat Topup" items={topups} sign="+" color="text-emerald-600" />
-          <History title="Riwayat Withdraw" items={withdraws} sign="-" color="text-red-600" />
+          <History title="Riwayat Topup" items={topups} sign="+" color="text-emerald-400" />
+          <History title="Riwayat Withdraw" items={withdraws} sign="-" color="text-red-400" />
         </div>
       </div>
     </div>
@@ -109,13 +123,13 @@ export default function WalletPage() {
 function History({ title, items, sign, color }: { title: string; items: any[]; sign: string; color: string }) {
   return (
     <div>
-      <h2 className="font-black mb-3">{title}</h2>
+      <h2 className="font-black mb-3 text-slate-200">{title}</h2>
       <div className="space-y-3">
-        {items.length === 0 && <p className="text-sm text-slate-500">Belum ada riwayat</p>}
+        {items.length === 0 && <p className="text-sm text-slate-400">Belum ada riwayat</p>}
         {items.map(h => (
           <Card key={h._id}>
             <CardContent className="p-4 flex justify-between gap-3">
-              <div><p className="font-bold text-sm">{h.method}</p><p className="text-xs text-slate-500">{new Date(h.createdAt).toLocaleDateString('id-ID')}</p></div>
+              <div><p className="font-bold text-sm text-slate-200">{h.method}</p><p className="text-xs text-slate-400">{new Date(h.createdAt).toLocaleDateString('id-ID')}</p></div>
               <div className="text-right"><p className={`font-black text-sm ${color}`}>{sign}{formatRupiah(h.amount)}</p><Badge status={h.status} className="mt-1" /></div>
             </CardContent>
           </Card>
