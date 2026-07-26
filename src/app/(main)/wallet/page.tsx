@@ -57,10 +57,9 @@ export default function WalletPage() {
       <div className="grid gap-5 lg:grid-cols-[380px_1fr]">
         <div>
           <Card className="mb-5 overflow-hidden">
-            <CardContent className="p-6 bg-gradient-to-br from-slate-800 via-emerald-900 to-teal-900 text-white">
-              <div className="mb-6 flex items-center gap-2"><Wallet size={22} /><span className="text-sm font-bold text-emerald-300">Saldo Dompet</span></div>
+            <CardContent className="p-6 bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500 text-white">
+              <div className="mb-2 flex items-center gap-2 text-emerald-100"><Wallet size={20} /><span className="text-sm font-bold">Saldo Dompet</span></div>
               <p className="text-4xl font-black tracking-tight">{formatRupiah(profile.balance)}</p>
-              <p className="mt-2 text-xs text-emerald-200/70">Saldo masuk setelah topup diapprove admin.</p>
             </CardContent>
           </Card>
 
