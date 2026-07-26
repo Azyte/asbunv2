@@ -19,6 +19,7 @@ export default function MerchantPage() {
   const [cart, setCart] = useState<Record<string, number>>({});
   const [notes, setNotes] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     fetch("/api/merchants").then(r => r.json()).then(data => {
@@ -40,6 +41,7 @@ export default function MerchantPage() {
 
   async function handleOrder() {
     setLoading(true);
+    setError("");
     const items = cartItems.map(m => ({ name: m.name, price: m.price, quantity: cart[m.name] }));
     const res = await fetch("/api/orders", {
       method: "POST",
@@ -54,8 +56,12 @@ export default function MerchantPage() {
         totalPrice: pricing.totalPrice,
       })
     });
-    if (res.ok) router.push("/food/history");
-    else setLoading(false);
+    const data = await res.json().catch(() => null);
+    if (res.ok) router.push(`/orders/${data._id}`);
+    else {
+      setError(data?.error || "Gagal membuat order. Coba login ulang.");
+      setLoading(false);
+    }
   }
 
   return (
@@ -98,6 +104,7 @@ export default function MerchantPage() {
             </CardContent>
           </Card>
 
+          {error && <p className="rounded-2xl bg-red-50 p-3 text-sm font-medium text-red-600">{error}</p>}
           <Button className="w-full" size="lg" onClick={handleOrder} disabled={loading}>
             {loading ? "Memproses..." : "Titip Sekarang"}
           </Button>

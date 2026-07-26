@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Utensils, ShoppingBag, Store, User, Wallet, Repeat, LayoutDashboard } from "lucide-react";
+import { Home, Utensils, ShoppingBag, User, Wallet, Repeat, LayoutDashboard, Store } from "lucide-react";
 
-const NAV_ITEMS = [
+const DESKTOP_NAV = [
   { href: "/home", label: "Home", icon: Home },
   { href: "/food", label: "Food", icon: Utensils },
   { href: "/jastip/board", label: "Jastip", icon: ShoppingBag },
@@ -13,6 +13,14 @@ const NAV_ITEMS = [
   { href: "/wallet", label: "Wallet", icon: Wallet },
   { href: "/profile", label: "Profile", icon: User },
   { href: "/admin/dashboard", label: "Admin", icon: LayoutDashboard },
+];
+
+const MOBILE_NAV = [
+  { href: "/home", label: "Home", icon: Home },
+  { href: "/food", label: "Food", icon: Utensils },
+  { href: "/jastip/board", label: "Jastip", icon: ShoppingBag },
+  { href: "/wallet", label: "Wallet", icon: Wallet },
+  { href: "/profile", label: "Profile", icon: User },
 ];
 
 export function BottomNav() {
@@ -30,7 +38,7 @@ export function BottomNav() {
           </div>
         </Link>
         <nav className="space-y-2">
-          {NAV_ITEMS.map(({ href, label, icon: Icon }) => {
+          {DESKTOP_NAV.map(({ href, label, icon: Icon }) => {
             const isActive = pathname.startsWith(href);
             return (
               <Link key={href} href={href} className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-bold transition-all ${isActive ? "bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg shadow-emerald-500/25" : "text-slate-500 hover:bg-slate-100 hover:text-slate-900"}`}>
@@ -43,8 +51,8 @@ export function BottomNav() {
       </aside>
 
       <div className="fixed bottom-3 left-1/2 z-50 w-[calc(100%-1rem)] max-w-md -translate-x-1/2 rounded-[1.75rem] border border-white/60 bg-white/85 px-2 pb-safe shadow-2xl shadow-slate-900/15 backdrop-blur-xl sm:bottom-5 sm:w-[calc(100%-2rem)] lg:hidden">
-        <div className="flex h-16 items-center justify-around overflow-x-auto no-scrollbar">
-          {NAV_ITEMS.slice(0, 5).map(({ href, label, icon: Icon }) => {
+        <div className="flex h-16 items-center justify-around">
+          {MOBILE_NAV.map(({ href, label, icon: Icon }) => {
             const isActive = pathname.startsWith(href);
             return (
               <Link key={href} href={href} className={`relative flex h-12 min-w-14 flex-col items-center justify-center gap-1 rounded-2xl px-2 transition-all ${isActive ? "bg-gradient-to-br from-emerald-500 to-teal-500 text-white shadow-lg shadow-emerald-500/30" : "text-slate-400 hover:text-slate-700"}`}>
