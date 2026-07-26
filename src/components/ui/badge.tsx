@@ -10,6 +10,8 @@ const statusColors: Record<string, string> = {
   available: "bg-green-100 text-green-800",
   borrowed: "bg-red-100 text-red-800",
   sold: "bg-gray-100 text-gray-800",
+  approved: "bg-green-100 text-green-800",
+  rejected: "bg-red-100 text-red-800",
 }
 
 const statusLabels: Record<string, string> = {
@@ -22,6 +24,8 @@ const statusLabels: Record<string, string> = {
   available: "Tersedia",
   borrowed: "Dipinjam",
   sold: "Terjual",
+  approved: "Disetujui",
+  rejected: "Ditolak",
 }
 
 export function Badge({ status, className }: { status: string; className?: string }) {

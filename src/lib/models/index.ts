@@ -78,3 +78,13 @@ const withdrawalSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 export const Withdrawal = mongoose.models.Withdrawal || mongoose.model('Withdrawal', withdrawalSchema);
+
+const topupSchema = new mongoose.Schema({
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  amount: { type: Number, required: true },
+  method: { type: String, required: true },
+  proof: { type: String },
+  status: { type: String, enum: ['pending', 'approved', 'rejected'], default: 'pending' },
+}, { timestamps: true });
+
+export const Topup = mongoose.models.Topup || mongoose.model('Topup', topupSchema);
