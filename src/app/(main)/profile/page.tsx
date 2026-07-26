@@ -54,11 +54,25 @@ export default function ProfilePage() {
         <Card><CardContent className="p-4 text-center"><p className="text-xs text-slate-500 mb-1">Jastip</p><p className="text-2xl font-black text-emerald-600">{profile.jastipCount}</p></CardContent></Card>
       </div>
 
-      {(session?.user as any)?.role === 'admin' && (
-        <Link href="/admin/dashboard" className="mb-3 flex items-center justify-between rounded-3xl bg-white p-4 shadow-sm border border-white/60">
-          <span className="font-bold text-sm">Admin Dashboard</span><ChevronRight size={18} />
+      <div className="space-y-3 mb-6">
+        <Link href="/food/history" className="flex items-center justify-between rounded-3xl bg-white p-4 shadow-sm border border-white/60">
+          <span className="font-bold text-sm">Riwayat & Tracker Order</span><ChevronRight size={18} />
         </Link>
-      )}
+        <Link href="/wallet" className="flex items-center justify-between rounded-3xl bg-white p-4 shadow-sm border border-white/60">
+          <span className="font-bold text-sm">Wallet & Withdraw</span><ChevronRight size={18} />
+        </Link>
+        <Link href="/marketplace" className="flex items-center justify-between rounded-3xl bg-white p-4 shadow-sm border border-white/60">
+          <span className="font-bold text-sm">Data Marketplace</span><ChevronRight size={18} />
+        </Link>
+        <Link href="/borrow" className="flex items-center justify-between rounded-3xl bg-white p-4 shadow-sm border border-white/60">
+          <span className="font-bold text-sm">Data Borrow</span><ChevronRight size={18} />
+        </Link>
+        {(session?.user as any)?.role === 'admin' && (
+          <Link href="/admin/dashboard" className="flex items-center justify-between rounded-3xl bg-slate-900 p-4 text-white shadow-sm">
+            <span className="font-bold text-sm">Admin Dashboard</span><ChevronRight size={18} />
+          </Link>
+        )}
+      </div>
 
       <Button variant="destructive" className="w-full flex items-center gap-2 rounded-2xl" onClick={() => signOut()}>
         <LogOut size={18} /> Keluar
