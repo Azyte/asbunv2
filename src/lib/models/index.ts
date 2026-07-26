@@ -67,3 +67,14 @@ const borrowSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 export const Borrow = mongoose.models.Borrow || mongoose.model('Borrow', borrowSchema);
+
+const withdrawalSchema = new mongoose.Schema({
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  amount: { type: Number, required: true },
+  method: { type: String, required: true }, // e.g. "Gopay", "BCA"
+  accountNumber: { type: String, required: true },
+  accountName: { type: String, required: true },
+  status: { type: String, enum: ['pending', 'approved', 'rejected'], default: 'pending' },
+}, { timestamps: true });
+
+export const Withdrawal = mongoose.models.Withdrawal || mongoose.model('Withdrawal', withdrawalSchema);

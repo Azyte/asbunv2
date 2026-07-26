@@ -43,8 +43,10 @@ export default function AdminDashboard() {
       </Card>
 
       <div className="space-y-2 mt-6">
+        <Link href="/admin/merchants" className="block bg-white border rounded-xl p-4 hover:bg-gray-50">Kelola Merchant & Menu →</Link>
+        <Link href="/admin/withdrawals" className="block bg-white border rounded-xl p-4 hover:bg-gray-50">Persetujuan Penarikan Dana →</Link>
         <Link href="/admin/users" className="block bg-white border rounded-xl p-4 hover:bg-gray-50">Kelola Users →</Link>
-        <Link href="/admin/transactions" className="block bg-white border rounded-xl p-4 hover:bg-gray-50">Kelola Transaksi →</Link>
+        <Link href="/admin/transactions" className="block bg-white border rounded-xl p-4 hover:bg-gray-50">Kelola Transaksi Order →</Link>
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { LogOut, User } from "lucide-react";
 import { signOut } from "next-auth/react";
+import Link from "next/link";
 
 export default function ProfilePage() {
   const { data: session, status } = useSession();
@@ -49,6 +50,13 @@ export default function ProfilePage() {
             <p className="text-lg font-bold text-green-600">{profile.jastipCount}</p>
           </CardContent>
         </Card>
+      </div>
+
+      <div className="space-y-2 mb-6">
+        <Link href="/wallet" className="flex items-center justify-between p-4 bg-white border rounded-xl hover:bg-gray-50">
+          <span className="font-medium text-sm">Dompet & Penarikan</span>
+          <span className="text-gray-400">→</span>
+        </Link>
       </div>
 
       <Button variant="destructive" className="w-full flex items-center gap-2" onClick={() => signOut()}>
