@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 :root {
-  --background: #0f172a;
-  --foreground: #f8fafc;
-  --card-bg: #1e293b;
-  --card-border: rgba(255,255,255,0.08);
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
   --accent: #10b981;
   --accent-gradient: linear-gradient(135deg, #10b981, #06b6d4, #3b82f6);
 }
@@ -18,8 +18,7 @@ html {
 body {
   color: var(--foreground);
   background: var(--background);
-  background-image: radial-gradient(circle at 20% 20%, rgba(16,185,129,0.12) 0%, transparent 40%),
-                    radial-gradient(circle at 80% 80%, rgba(6,182,212,0.12) 0%, transparent 40%);
+  background-image: none;
   -webkit-tap-highlight-color: transparent;
   overflow-x: hidden;
 }
@@ -32,14 +31,13 @@ body {
   padding-bottom: env(safe-area-inset-bottom);
 }
 
-/* 3D Card with gradient border */
 .card-3d {
   position: relative;
   background: var(--card-bg);
   border-radius: 1.5rem;
   border: 1px solid var(--card-border);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
-  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+  transition: all 0.3s;
 }
 
 .card-3d::before {
@@ -52,96 +50,51 @@ body {
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
-  opacity: 0.3;
-  transition: all 0.3s;
+  opacity: 0.25;
+  pointer-events: none;
 }
 
 .card-3d:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
 }
 
 .card-3d:hover::before {
-  opacity: 0.5;
+  opacity: 0.4;
 }
 
-/* Gradient Text */
-.text-gradient {
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: gradient 3s ease infinite;
+/* Retro Input */
+.input-retro {
+  background: white;
+  border: 1px solid #cbd5e1;
+  color: #0f172a;
+  font-weight: 500;
 }
 
-@keyframes gradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+.input-retro:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(16,185,129,0.1);
 }
 
 /* Retro Button */
 .btn-retro {
   background: var(--accent-gradient);
   color: white;
-  font-weight: 800;
-  box-shadow: 0 6px 0 #059669, 0 12px 20px rgba(0,0,0,0.4);
+  font-weight: 700;
+  box-shadow: 0 4px 0 #059669, 0 8px 16px rgba(5,150,105,0.2);
   transition: all 0.1s;
 }
 
 .btn-retro:active {
-  transform: translateY(4px);
-  box-shadow: 0 2px 0 #059669, 0 4px 8px rgba(0,0,0,0.4);
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #059669, 0 4px 8px rgba(5,150,105,0.2);
 }
 
 .btn-retro:disabled {
   opacity: 0.7;
   cursor: not-allowed;
   box-shadow: none;
-}
-
-/* Retro Input */
-.input-retro {
-  background: rgba(30,41,59,0.6);
-  border: 1px solid var(--card-border);
-  color: white;
-  font-weight: 600;
-  transition: all 0.2s;
-}
-
-.input-retro:focus {
-  outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(16,185,129,0.2);
-}
-
-/* Retro Select */
-.select-retro {
-  background: rgba(30,41,59,0.6);
-  border: 1px solid var(--card-border);
-  color: white;
-  font-weight: 600;
-  transition: all 0.2s;
-}
-
-.select-retro:focus {
-  outline: none;
-  border-color: var(--accent);
-}
-
-/* Glass Panel */
-.glass-panel {
-  background: rgba(30,41,59,0.6);
-  backdrop-filter: blur(12px);
-  border: 1px solid var(--card-border);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-}
-
-/* Badge Retro */
-.badge-retro {
-  background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(6,182,212,0.2));
-  border: 1px solid rgba(16,185,129,0.3);
-  color: #6ee7b7;
 }
 
 /* No scrollbar */
